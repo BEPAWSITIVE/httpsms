@@ -163,10 +163,10 @@ class LoginViewModel : ViewModel() {
                 return@launch
             }
 
-            if (!URLUtil.isHttpsUrl(serverUrl)) {
+            if (!URLUtil.isHttpsUrl(serverUrl) && !URLUtil.isHttpUrl(serverUrl)) {
                 _uiState.value = _uiState.value.copy(
                     isLoading = false,
-                    serverUrlError = "Server URL [$serverUrl] must be HTTPS"
+                    serverUrlError = "Server URL [$serverUrl] must start with http:// or https://"
                 )
                 return@launch
             }
